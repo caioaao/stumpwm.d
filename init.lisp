@@ -14,22 +14,17 @@
       *window-border-style* :thick) ; :thick :thin :tight :none
 
 ;;;; The Mode Line
-(setf *mode-line-background-color* "DarkRed"
+(setf *mode-line-background-color* "#583d5e"
       *mode-line-foreground-color* "White"
       *mode-line-border-color* "White"
       *mode-line-timeout* 1
-      *mode-line-screen-position* :bottom
+      *mode-line-position* :top
       *window-format* "^B^8*%n%s%m%30t :: ^7*"
       *group-format* "%t")
 (setf *screen-mode-line-format*
      (list '(" " (:eval (run-shell-command "date '+%R, %F %a'|tr -d [:cntrl:]" t)))))
 ;;	   '(" | " (:eval (run-shell-command "sed '/MemTotal/!d; s/\w*:\s*//g' < /proc/meminfo" t)))
 ;;	   '(" | " (:eval (run-shell-command "sed '/MemFree/!d; s/\w*:\s*//g' < /proc/meminfo" t)) " | %W")))
-
-(defun update-mode-line () "Update the mode-line sooner than usual."
-       (let ((screen (current-screen)))
-         (when (screen-mode-line screen)
-           (redraw-mode-line-for (screen-mode-line screen) screen))))
 
 ;; Turn on the modeline
 (if (not (head-mode-line (current-head)))
