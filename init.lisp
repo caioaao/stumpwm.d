@@ -1,8 +1,7 @@
-;; -*-lisp-*-
-;;
-;; Here is a sample .stumpwmrc file
-
 (in-package :stumpwm)
+
+(defvar *stumpwm-config-dir* "~/.stumpwm.d/"
+  "StumpWM configuration directory.")
 
 ;; change the prefix key to something else
 (set-prefix-key (kbd "C-q"))
@@ -13,18 +12,7 @@
       *transient-border-width* 1
       *window-border-style* :thick) ; :thick :thin :tight :none
 
-;;;; The Mode Line
-(setf *mode-line-background-color* "#583d5e"
-      *mode-line-foreground-color* "White"
-      *mode-line-border-color* "White"
-      *mode-line-timeout* 1
-      *mode-line-position* :top
-      *window-format* "^B^8*%n%s%m%30t :: ^7*"
-      *group-format* "%t")
-(setf *screen-mode-line-format*
-     (list '(" " (:eval (run-shell-command "date '+%R, %F %a'|tr -d [:cntrl:]" t)))))
-;;	   '(" | " (:eval (run-shell-command "sed '/MemTotal/!d; s/\w*:\s*//g' < /proc/meminfo" t)))
-;;	   '(" | " (:eval (run-shell-command "sed '/MemFree/!d; s/\w*:\s*//g' < /proc/meminfo" t)) " | %W")))
+(load (concat *stumpwm-config-dir* "modeline.lisp"))
 
 ;; Turn on the modeline
 (if (not (head-mode-line (current-head)))
@@ -41,14 +29,12 @@
     (when cmd
       (eval-command cmd t))))
 
-;; Read some doc
-(define-key *root-map* (kbd "d") "exec gv")
 ;; Browse somewhere
 (define-key *root-map* (kbd "b") "colon1 exec firefox http://www.")
 ;; Ssh somewhere
 (define-key *root-map* (kbd "C-s") "colon1 exec xterm -e ssh ")
 ;; Lock screen
-(define-key *root-map* (kbd "C-l") "exec xlock")
+(define-key *root-map* (kbd "C-l") "exec i3lock -c 000000")
 
 ;; Web jump (works for Google and Imdb)
 (defmacro make-web-jump (name prefix)
@@ -57,11 +43,9 @@
     (run-shell-command (concatenate 'string ,prefix search))))
 
 (make-web-jump "google" "firefox http://www.google.fr/search?q=")
-(make-web-jump "imdb" "firefox http://www.imdb.com/find?q=")
 
 ;; C-t M-s is a terrble binding, but you get the idea.
 (define-key *root-map* (kbd "M-s") "google")
-(define-key *root-map* (kbd "i") "imdb")
 
 ;; Message window font
 (set-font "-xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-15")
