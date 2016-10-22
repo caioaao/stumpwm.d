@@ -3,20 +3,14 @@
 (defvar *stumpwm-config-dir* "~/.stumpwm.d/"
   "StumpWM configuration directory.")
 
+(defun rel-path (suffix)
+  "Path relative to `*stumpwm-config-dir*`"
+  (concat *stumpwm-config-dir* suffix))
+
+(load (rel-path "theme.lisp"))
+
 ;; change the prefix key to something else
 (set-prefix-key (kbd "C-q"))
-
-;;; Window Appearance
-(setf *normal-border-width* 0
-      *maxsize-border-width* 0
-      *transient-border-width* 1
-      *window-border-style* :thick) ; :thick :thin :tight :none
-
-(load (concat *stumpwm-config-dir* "modeline.lisp"))
-
-;; Turn on the modeline
-(if (not (head-mode-line (current-head)))
-    (toggle-mode-line (current-screen) (current-head)))
 
 ;; Set focus to follow mouse
 (setf *mouse-focus-policy* :sloppy)
@@ -29,23 +23,12 @@
     (when cmd
       (eval-command cmd t))))
 
-;; Browse somewhere
-(define-key *root-map* (kbd "b") "colon1 exec firefox http://www.")
+;; Browser
+(define-key *root-map* (kbd "b") "exec firefox")
 ;; Ssh somewhere
 (define-key *root-map* (kbd "C-s") "colon1 exec xterm -e ssh ")
 ;; Lock screen
 (define-key *root-map* (kbd "C-l") "exec i3lock -c 000000")
-
-;; Web jump (works for Google and Imdb)
-(defmacro make-web-jump (name prefix)
-  `(defcommand ,(intern name) (search) ((:rest ,(concatenate 'string name " search: ")))
-    (substitute #\+ #\Space search)
-    (run-shell-command (concatenate 'string ,prefix search))))
-
-(make-web-jump "google" "firefox http://www.google.fr/search?q=")
-
-;; C-t M-s is a terrble binding, but you get the idea.
-(define-key *root-map* (kbd "M-s") "google")
 
 ;; Message window font
 (set-font "-xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-15")
