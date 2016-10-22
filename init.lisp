@@ -30,6 +30,17 @@
 ;; Lock screen
 (define-key *root-map* (kbd "C-l") "exec i3lock -c 000000")
 
+;; Window movement
+(define-key *root-map* (kbd "h") "move-focus left")
+(define-key *root-map* (kbd "j") "move-focus up")
+(define-key *root-map* (kbd "k") "move-focus down")
+(define-key *root-map* (kbd "l") "move-focus right")
+
+(define-key *root-map* (kbd "M-h") "move-window left")
+(define-key *root-map* (kbd "M-j") "move-window up")
+(define-key *root-map* (kbd "M-k") "move-window down")
+(define-key *root-map* (kbd "M-l") "move-window right")
+
 ;; Message window font
 (set-font "-xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-15")
 
