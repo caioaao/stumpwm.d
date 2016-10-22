@@ -9,6 +9,9 @@
 
 (load (rel-path "theme.lisp"))
 
+;; swank stuff
+(load (rel-path "swank.lisp"))
+
 ;; change the prefix key to something else
 (set-prefix-key (kbd "C-q"))
 
@@ -29,6 +32,10 @@
 (define-key *root-map* (kbd "C-s") "colon1 exec xterm -e ssh ")
 ;; Lock screen
 (define-key *root-map* (kbd "C-l") "exec i3lock -c 000000")
+
+;; swank bindings
+(define-key *root-map* (kbd "M-s-s") "swank-start")
+(define-key *root-map* (kbd "M-s-k") "swank-stop")
 
 ;; Window movement
 (define-key *root-map* (kbd "h") "move-focus left")
