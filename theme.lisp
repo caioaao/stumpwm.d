@@ -30,7 +30,7 @@
 
 (setf *screen-mode-line-format*
       (mode-line-list (list "%g"
-                            "^[^B^7*%h^] @ %n"
+                            "%n @ ^[^B^7*%h^]"
                             "%C %t"
                             "%M"
                             "%D"
