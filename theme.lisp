@@ -37,8 +37,6 @@
                             '(:eval (string-trim '(#\Newline)
                                      (run-shell-command "date '+%R, %F %a'" t))))))
 
-(shell-command-entry "date '+%R, %F %a'")
-
 ;; Turn on the modeline
 (if (not (head-mode-line (current-head)))
     (toggle-mode-line (current-screen) (current-head)))
