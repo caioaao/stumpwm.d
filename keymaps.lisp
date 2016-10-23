@@ -2,15 +2,11 @@
 
 ;; Programs
 (define-key *root-map* (kbd "M-m") "spotify")
-
-;; Browser
 (define-key *root-map* (kbd "b") "exec firefox")
-;; Ssh somewhere
 (define-key *root-map* (kbd "C-s") "colon1 exec xterm -e ssh ")
-;; Lock screen
 (define-key *root-map* (kbd "C-l") "exec i3lock -c 000000")
 
-;; swank bindings
+;; Swank bindings
 (define-key *root-map* (kbd "M-s-s") "swank-start")
 (define-key *root-map* (kbd "M-s-k") "swank-stop")
 
@@ -30,8 +26,17 @@
 (define-key *root-map* (kbd (concatenate 'string "M-" vi-down)) "move-window down")
 (define-key *root-map* (kbd (concatenate 'string "M-" vi-right)) "move-window right")
 
-;; dev layout
+;; Load dev layout
 (define-key *root-map* (kbd "M-d") "restore-from-file ~/.stumpwm.d/dumps/dev.lisp")
 
+;;; Media keys
 
-;; media
+;; Volume keys
+(define-key *top-map* (kbd "XF86AudioLowerVolume") "amixer-Master-1-")
+(define-key *top-map* (kbd "XF86AudioRaiseVolume") "amixer-Master-1+")
+(define-key *top-map* (kbd "XF86AudioMute") "amixer-Master-toggle")
+
+;; Spotify control
+(define-key *top-map* (kbd "XF86AudioPlay") "exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
+(define-key *top-map* (kbd "XF86AudioPrev") "exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
+(define-key *top-map* (kbd "XF86AudioNext") "exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")

@@ -11,6 +11,8 @@
 
 (load (rel-path "theme.lisp"))
 
+(load (rel-path "media.lisp"))
+
 ;; swank stuff
 (load (rel-path "swank.lisp"))
 
