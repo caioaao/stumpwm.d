@@ -45,7 +45,7 @@
     (0 T T :create "music-dump" :class "Spotify")) ;; this is broken :(
 
 (define-frame-preference "Steam"
-    (0 T T :create "steam-dump" :class "Steam"))
+    (0 nil T :create "steam-dump" :class "Steam"))
 
 (define-frame-preference "csgo"
     (0 T T :create "gaming-dump" :class "csgo_linux64"))

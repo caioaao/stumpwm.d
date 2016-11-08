@@ -5,8 +5,7 @@
 (load-module "cpu")
 (load-module "mem")
 (load-module "disk")
-
-
+(load-module "mpd")
 
 ;;; Window Appearance
 (setf *normal-border-width* 0
@@ -31,9 +30,9 @@
 (setf *screen-mode-line-format*
       (mode-line-list (list "%g"
                             "%n @ ^[^B^7*%h^]"
-                            "%C %t"
                             "%M"
                             "%D"
+                            "%m"
                             '(:eval (string-trim '(#\Newline)
                                      (run-shell-command "date '+%R, %F %a'" t))))))
 
