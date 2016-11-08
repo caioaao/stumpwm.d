@@ -1,4 +1,5 @@
-(in-package :stumpwm)
+(load-module "icommand")
+
 
 ;; Programs
 (define-key *root-map* (kbd "M-m") "spotify")
@@ -11,38 +12,15 @@
 (define-key *root-map* (kbd "M-s-k") "swank-stop")
 
 ;; Window movement
-(defvar *imove-focus-map* (make-sparse-keymap))
+(defvar vi-left "h")
+(defvar vi-down "j")
+(defvar vi-up "k")
+(defvar vi-right "l")
 
-;; (defvar vi-left "h")
-;; (defvar vi-down "j")
-;; (defvar vi-up "k")
-;; (defvar vi-right "l")
-
-(defcommand exit-imove-focus () ()
-  "Exits imove-focus mode"
-  (message "Interactive focus mode finished")
-  (pop-top-map))
-
-
-(defun update-imove-focus-map ()
-  (let ((m (or *imove-focus-map* (setf *imove-focus-map* (make-sparse-keymap)))))
-    (define-key m (kbd vi-left) "move-focus left")
-    (define-key m (kbd vi-up) "move-focus up")
-    (define-key m (kbd vi-down) "move-focus down")
-    (define-key m (kbd vi-right) "move-focus right")
-
-    (define-key m (kbd "RET") "exit-imove-focus")
-    (define-key m (kbd "C-g") "exit-imove-focus")
-    (define-key m (kbd "ESC") "exit-imove-focus")
-    m))
-
-(update-imove-focus-map)
-
-(defcommand imove-focus () ()
-  "Start interactive move focus mode. A new keymap specific to moving focus is
-  loaded. Hit @key{C-g}, @key{RET} or @key{ESC} to exit."
-  (message "Interactive move focus")
-  (push-top-map *imove-focus-map*))
+(icommand:deficommand imove-focus (((kbd vi-left) "move-focus left")
+                                   ((kbd vi-up) "move-focus up")
+                                   ((kbd vi-down) "move-focus down")
+                                   ((kbd vi-right) "move-focus right")))
 
 (define-key *root-map* (kbd "o") "imove-focus")
 

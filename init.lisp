@@ -9,6 +9,9 @@
 
 (defvar *data-dir* (rel-path "dump/"))
 
+;; add user modules to load path
+(add-to-load-path (rel-path "modules/icommand"))
+
 (load (rel-path "theme.lisp"))
 
 (load (rel-path "media.lisp"))

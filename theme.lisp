@@ -1,5 +1,3 @@
-(in-package :stumpwm)
-
 (load-module "hostname")
 (load-module "net")
 (load-module "cpu")

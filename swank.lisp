@@ -1,5 +1,3 @@
-(in-package :stumpwm)
-
 ;; quicklisp init
 (load "~/.local/opt/quicklisp/setup.lisp")
 (ql:quickload "swank")
