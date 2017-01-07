@@ -1,9 +1,21 @@
+(in-package :stumpwm)
+
 (load-module "hostname")
 (load-module "net")
 (load-module "cpu")
 (load-module "mem")
 (load-module "disk")
 (load-module "mpd")
+
+;; Color caching
+
+(setf *default-colors* *colors*)
+
+(setf *colors*
+      (append *default-colors*
+              '("#009696")))
+
+(update-color-map (current-screen))
 
 ;;; Window Appearance
 (setf *normal-border-width* 0
@@ -12,13 +24,20 @@
       *window-border-style* :thick) ; :thick :thin :tight :none
 
 ;;; Modeline Appearance
-(setf *mode-line-background-color* "#583d5e"
-      *mode-line-foreground-color* "White"
-      *mode-line-border-color* "White"
+(setf *mode-line-background-color* "#000809"
+      *mode-line-foreground-color* "DeepSkyBlue"
       *mode-line-timeout* 1
       *mode-line-position* :top
-      *window-format* "^B^8*%n%s%m%30t :: ^7*"
-      *group-format* "%t")
+      *window-format* "%m%n%s%20t"
+      *group-format* " %t ")
+
+(setf *date-modeline-string* "^8 %F %a^n")
+(setf *time-modeline-string* "^7^B%R^b^n")
+
+(defun formatted-datetime (s)
+  (string-trim '(#\Newline)
+               (run-shell-command
+                (format nil "date +\"~A\"" s) t)))
 
 (defun mode-line-list (l)
   (if (cdr l)
@@ -26,13 +45,12 @@
       (list "[" (car l) "]")))
 
 (setf *screen-mode-line-format*
-      (mode-line-list (list "%g"
-                            "%n @ ^[^B^7*%h^]"
-                            "%M"
-                            "%D"
-                            "%m"
-                            '(:eval (string-trim '(#\Newline)
-                                     (run-shell-command "date '+%R, %F %a'" t))))))
+      (list "^B^3 %g ^n^b %W "
+            "^>"
+            "^8 %M^n"
+            '(:eval (formatted-datetime *date-modeline-string*))
+            " "
+            '(:eval (formatted-datetime *time-modeline-string*))))
 
 ;; Turn on the modeline
 (if (not (head-mode-line (current-head)))
