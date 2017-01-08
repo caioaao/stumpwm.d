@@ -17,13 +17,15 @@
   (message (format nil "~s started" name))
   (stumpwm::push-top-map kmap))
 
-(defmacro deficommand (icmd-name key-bindings)
-  `(let ((m (make-sparse-keymap)))
-     ,@(loop for keyb in key-bindings
-          collect `(define-key m ,@keyb))
-     (define-key m (kbd "RET") ,(format nil "icommand-exit-interactive-mode ~s" icmd-name))
-     (define-key m (kbd "C-g") ,(format nil "icommand-exit-interactive-mode ~s" icmd-name))
-     (define-key m (kbd "ESC") ,(format nil "icommand-exit-interactive-mode ~s" icmd-name))
-     (defcommand ,icmd-name () ()
-       (icommand-enter-interactive-mode m ,(symbol-name icmd-name)))))
+(defmacro deficommand (name key-bindings)
+  (let ((exit-command (format nil "icommand-exit-interactive-mode ~s" name))
+        (m-name (gensym "m")))
+    `(let ((,m-name (make-sparse-keymap)))
+       ,@(loop for keyb in key-bindings
+            collect `(define-key ,m-name ,@keyb))
+       (define-key ,m-name (kbd "RET") ,exit-command)
+       (define-key ,m-name (kbd "C-g") ,exit-command)
+       (define-key ,m-name (kbd "ESC") ,exit-command)
+       (defcommand ,name () ()
+         (icommand-enter-interactive-mode ,m-name ,(symbol-name name))))))
 
