@@ -18,8 +18,9 @@
   (stumpwm::push-top-map kmap))
 
 (defmacro deficommand (name key-bindings)
-  (let ((exit-command (format nil "icommand-exit-interactive-mode ~s" name))
-        (m-name (gensym "m")))
+  (let* ((command (if (listp name) (car name) name))
+         (exit-command (format nil "icommand-exit-interactive-mode ~s" command))
+         (m-name (gensym "m")))
     `(let ((,m-name (make-sparse-keymap)))
        ,@(loop for keyb in key-bindings
             collect `(define-key ,m-name ,@keyb))
@@ -27,5 +28,5 @@
        (define-key ,m-name (kbd "C-g") ,exit-command)
        (define-key ,m-name (kbd "ESC") ,exit-command)
        (defcommand ,name () ()
-         (icommand-enter-interactive-mode ,m-name ,(symbol-name name))))))
+         (icommand-enter-interactive-mode ,m-name ,(symbol-name command))))))
 
