@@ -1,3 +1,5 @@
+(in-package :stumpwm)
+
 (load-module "icommand")
 
 
@@ -17,10 +19,11 @@
 (defvar vi-up "k")
 (defvar vi-right "l")
 
-(icommand:deficommand imove-focus (((kbd vi-left) "move-focus left")
-                                   ((kbd vi-up) "move-focus up")
-                                   ((kbd vi-down) "move-focus down")
-                                   ((kbd vi-right) "move-focus right")))
+(icommand:deficommand imove-focus
+    (((kbd vi-left) "move-focus left")
+     ((kbd vi-up) "move-focus up")
+     ((kbd vi-down) "move-focus down")
+     ((kbd vi-right) "move-focus right")))
 
 (define-key *root-map* (kbd "o") "imove-focus")
 
@@ -43,11 +46,3 @@
 (define-key *top-map* (kbd "XF86AudioLowerVolume") "amixer-Master-1-")
 (define-key *top-map* (kbd "XF86AudioRaiseVolume") "amixer-Master-1+")
 (define-key *top-map* (kbd "XF86AudioMute") "amixer-Master-toggle")
-
-;; mpd control
-(load-module "mpd")
-(define-key *top-map* (kbd "XF86AudioPlay") "mpd-toggle-pause")
-(define-key *top-map* (kbd "XF86AudioPrev") "mpd-prev")
-(define-key *top-map* (kbd "XF86AudioNext") "mpd-next")
-(define-key mpd:*mpd-map* (kbd "p") "mpd-select-playlist")
-(define-key *root-map* (kbd "C-m") mpd:*mpd-map*)

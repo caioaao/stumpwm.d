@@ -12,15 +12,14 @@
 ;; add user modules to load path
 (add-to-load-path (rel-path "modules/icommand"))
 
-(load (rel-path "theme.lisp"))
+(defvar *config-files* (list "theme.lisp"
+                             "media.lisp"
+                             "swank.lisp"
+                             "keymaps.lisp"
+                             "groups.lisp"))
 
-(load (rel-path "media.lisp"))
-
-;; swank stuff
-(load (rel-path "swank.lisp"))
-
-;; keymaps
-(load (rel-path "keymaps.lisp"))
+(loop for cfg-file in *config-files*
+     do (load (rel-path cfg-file)))
 
 ;; change the prefix key to something else
 (set-prefix-key (kbd "C-q"))
