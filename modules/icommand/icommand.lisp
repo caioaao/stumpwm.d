@@ -5,22 +5,22 @@
 ;;; Little macro to define interactive commands.
 
 (export '(icommand-enter-interactive-mode
+          icommand-exit-interactive-mode
           deficommand))
-
-(defcommand icommand-exit-interactive-mode
-    (name) ((:string "Interactive mode name (will show on message)"))
-  "Exits imove-focus mode"
-  (message "~s finished" name)
-  (stumpwm::pop-top-map))
 
 (defun icommand-enter-interactive-mode
     (kmap name)
   (message (format nil "~s started" name))
   (stumpwm::push-top-map kmap))
 
-(defmacro deficommand (name key-bindings &key pre-start-fn)
+(defun icommand-exit-interactive-mode (name)
+  "Exits imove-focus mode"
+  (message "~s finished" name)
+  (stumpwm::pop-top-map))
+
+(defmacro deficommand (name key-bindings &key pre-start-fn cleanup-fn)
   (let* ((command (if (listp name) (car name) name))
-         (exit-command (format nil "icommand-exit-interactive-mode ~s" command))
+         (exit-command (concatenate 'string "exit-" (symbol-name command)))
          (m-name (gensym "m")))
     `(let ((,m-name (make-sparse-keymap)))
        ,@(loop for keyb in key-bindings
@@ -33,4 +33,7 @@
             (if pre-start-fn
                 `(when (funcall ,pre-start-fn)
                    ,start-code)
-                start-code))))))
+                start-code)))
+       (defcommand ,(intern exit-command) () ()
+         (when ,cleanup-fn (funcall ,cleanup-fn))
+         (icommand-exit-interactive-mode ,(symbol-name command))))))
