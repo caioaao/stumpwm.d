@@ -1,8 +1,5 @@
 (in-package :stumpwm)
 
-(load-module "icommand")
-
-
 ;; Programs
 (define-key *root-map* (kbd "M-m") "spotify")
 (define-key *root-map* (kbd "b") "exec firefox")
@@ -19,7 +16,7 @@
 (defvar vi-up "k")
 (defvar vi-right "l")
 
-(icommand:deficommand imove-focus
+(deficommand imove-focus
     (((kbd vi-left) "move-focus left")
      ((kbd vi-up) "move-focus up")
      ((kbd vi-down) "move-focus down")

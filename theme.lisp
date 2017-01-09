@@ -1,11 +1,7 @@
 (in-package :stumpwm)
 
 (load-module "hostname")
-(load-module "net")
-(load-module "cpu")
 (load-module "mem")
-(load-module "disk")
-(load-module "mpd")
 
 ;; Color caching
 

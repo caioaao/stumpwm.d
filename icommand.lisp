@@ -1,22 +1,14 @@
-;;;; icommand.lisp
-
-(in-package #:icommand)
+(in-package :stumpwm)
 
 ;;; Little macro to define interactive commands.
 
-(export '(icommand-enter-interactive-mode
-          icommand-exit-interactive-mode
-          deficommand))
-
-(defun icommand-enter-interactive-mode
-    (kmap name)
+(defun icommand-enter-interactive-mode (kmap name)
   (message (format nil "~s started" name))
-  (stumpwm::push-top-map kmap))
+  (push-top-map kmap))
 
 (defun icommand-exit-interactive-mode (name)
-  "Exits imove-focus mode"
   (message "~s finished" name)
-  (stumpwm::pop-top-map))
+  (pop-top-map))
 
 (defmacro deficommand (name key-bindings &key pre-start-fn cleanup-fn)
   (let* ((command (if (listp name) (car name) name))
