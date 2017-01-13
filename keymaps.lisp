@@ -43,3 +43,8 @@
 (define-key *top-map* (kbd "XF86AudioLowerVolume") "amixer-Master-1-")
 (define-key *top-map* (kbd "XF86AudioRaiseVolume") "amixer-Master-1+")
 (define-key *top-map* (kbd "XF86AudioMute") "amixer-Master-toggle")
+
+;; Spotify control
+(define-key *top-map* (kbd "XF86AudioPlay") "exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
+(define-key *top-map* (kbd "XF86AudioPrev") "exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
+(define-key *top-map* (kbd "XF86AudioNext") "exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
