@@ -16,11 +16,11 @@
 (defvar vi-up "k")
 (defvar vi-right "l")
 
-(deficommand imove-focus
-    (((kbd vi-left) "move-focus left")
-     ((kbd vi-up) "move-focus up")
-     ((kbd vi-down) "move-focus down")
-     ((kbd vi-right) "move-focus right")))
+(define-interactive-keymap imove-focus nil
+    ((kbd vi-left) "move-focus left")
+    ((kbd vi-up) "move-focus up")
+    ((kbd vi-down) "move-focus down")
+    ((kbd vi-right) "move-focus right"))
 
 (define-key *root-map* (kbd "o") "imove-focus")
 
@@ -48,3 +48,8 @@
 (define-key *top-map* (kbd "XF86AudioPlay") "exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
 (define-key *top-map* (kbd "XF86AudioPrev") "exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
 (define-key *top-map* (kbd "XF86AudioNext") "exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
+
+
+;; screenshots
+(define-key *top-map* (kbd "Print") "escrotum ~/my/pics/screen-%Y-%m-%d-%H:%M:%S.png")
+(define-key *top-map* (kbd "s-Print") "escrotum -s ~/my/pics/screen-%Y-%m-%d-%H:%M:%S.png")

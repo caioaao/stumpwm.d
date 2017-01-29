@@ -10,10 +10,8 @@
 (defvar *data-dir* (rel-path "dump/"))
 
 ;; add user modules to load path
-(add-to-load-path (rel-path "modules/icommand"))
 
-(defvar *config-files* (list "icommand.lisp"
-                             "theme.lisp"
+(defvar *config-files* (list "theme.lisp"
                              "media.lisp"
                              "swank.lisp"
                              "keymaps.lisp"
