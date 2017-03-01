@@ -1,7 +1,7 @@
 (in-package :stumpwm)
 
 ;; First group
-(defvar *startup-groups* '("devel" "www"))
+(defvar *startup-groups* '("devel" "www" "chat" "music"))
 
 (defun setup-startup-groups ()
   (labels ((mk-command (cmd x) (concatenate 'string cmd " " x))

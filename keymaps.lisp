@@ -2,7 +2,7 @@
 
 ;; Programs
 (define-key *root-map* (kbd "M-m") "spotify")
-(define-key *root-map* (kbd "b") "exec firefox")
+(define-key *root-map* (kbd "b") "exec chromium")
 (define-key *root-map* (kbd "C-s") "colon1 exec xterm -e ssh ")
 (define-key *root-map* (kbd "C-l") "exec i3lock -c 000000")
 
@@ -36,6 +36,9 @@
 
 ;; Load dev layout
 (define-key *root-map* (kbd "M-d") "restore-from-file ~/.stumpwm.d/dumps/dev.lisp")
+
+;; Connection menu
+(define-key *root-map* (kbd "M-c") "exec netctl list | cut -b 3- | dmenu | ifne xargs sudo -A netctl switch-to")
 
 ;;; Media keys
 
