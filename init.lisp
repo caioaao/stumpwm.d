@@ -42,11 +42,11 @@
 ;; Clear rules
 (clear-window-placement-rules)
 
-(define-frame-preference "Music"
+(define-frame-preference "music"
     (0 T T :create "music-dump" :class "Spotify")) ;; this is broken :(
 
-(define-frame-preference "Steam"
+(define-frame-preference "steam"
     (0 nil T :create "steam-dump" :class "Steam"))
 
-(define-frame-preference "csgo"
+(define-frame-preference "game"
     (0 T T :create "gaming-dump" :class "csgo_linux64"))
