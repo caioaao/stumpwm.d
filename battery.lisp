@@ -32,4 +32,5 @@
     (format nil "BAT: ^[~A~D%^] (~A)"
             (bar-zone-color (cdr (assoc 'remain battery-data)) 50 30 10 t)
             (cdr (assoc 'remain battery-data))
-            (cdr (assoc 'status battery-data)))))
+            (if (equal "Charging" (cdr (assoc 'status battery-data)))
+                #\+ #\-))))
