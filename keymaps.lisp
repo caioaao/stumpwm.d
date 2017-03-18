@@ -5,6 +5,8 @@
 (define-key *root-map* (kbd "b") "exec chromium")
 (define-key *root-map* (kbd "C-s") "colon1 exec xterm -e ssh ")
 (define-key *root-map* (kbd "C-l") "exec i3lock -c 000000")
+(define-key *root-map* (kbd "c") "exec urxvt")
+(define-key *root-map* (kbd "C-c") "exec urxvt")
 
 ;; Swank bindings
 (define-key *root-map* (kbd "M-s-s") "swank-start")
