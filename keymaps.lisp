@@ -54,6 +54,10 @@
 (define-key *top-map* (kbd "XF86AudioPrev") "exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
 (define-key *top-map* (kbd "XF86AudioNext") "exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
 
+;; Brightess
+(define-key *top-map* (kbd "XF86MonBrightnessUp") "exec xbacklight -inc 8")
+(define-key *top-map* (kbd "XF86MonBrightnessDown") "exec xbacklight -dec 8")
+
 ;; screenshots
 (define-key *top-map* (kbd "Print") "exec escrotum ~/my/pics/screen-%Y-%m-%d-%H:%M:%S.png")
 (define-key *top-map* (kbd "s-Print") "exec escrotum -s ~/my/pics/screen-%Y-%m-%d-%H:%M:%S.png")
