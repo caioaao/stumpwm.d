@@ -5,6 +5,8 @@
 (define-key *root-map* (kbd "b") "exec chromium")
 (define-key *root-map* (kbd "C-s") "colon1 exec xterm -e ssh ")
 (define-key *root-map* (kbd "C-l") "exec i3lock -c 000000")
+(define-key *root-map* (kbd "c") "exec urxvt")
+(define-key *root-map* (kbd "C-c") "exec urxvt")
 
 ;; Swank bindings
 (define-key *root-map* (kbd "M-s-s") "swank-start")
@@ -52,7 +54,14 @@
 (define-key *top-map* (kbd "XF86AudioPrev") "exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous")
 (define-key *top-map* (kbd "XF86AudioNext") "exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
 
+;; Brightess
+(define-key *top-map* (kbd "XF86MonBrightnessUp") "exec xbacklight -inc 8")
+(define-key *top-map* (kbd "XF86MonBrightnessDown") "exec xbacklight -dec 8")
 
 ;; screenshots
-(define-key *top-map* (kbd "Print") "escrotum ~/my/pics/screen-%Y-%m-%d-%H:%M:%S.png")
-(define-key *top-map* (kbd "s-Print") "escrotum -s ~/my/pics/screen-%Y-%m-%d-%H:%M:%S.png")
+(define-key *top-map* (kbd "Print") "exec escrotum ~/my/pics/screen-%Y-%m-%d-%H:%M:%S.png")
+(define-key *top-map* (kbd "s-Print") "exec escrotum -s ~/my/pics/screen-%Y-%m-%d-%H:%M:%S.png")
+
+;; change kill
+(undefine-key *root-map* (kbd "C-k"))
+(define-key *root-map* (kbd "C-x") "delete")

@@ -15,7 +15,8 @@
                              "media.lisp"
                              "swank.lisp"
                              "keymaps.lisp"
-                             "groups.lisp"))
+                             "groups.lisp"
+                             "battery.lisp"))
 
 (loop for cfg-file in *config-files*
      do (load (rel-path cfg-file)))
