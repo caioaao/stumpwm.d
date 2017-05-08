@@ -49,5 +49,8 @@
             '(:eval (formatted-datetime *time-modeline-string*))))
 
 ;; Turn on the modeline
-(if (not (head-mode-line (current-head)))
-    (toggle-mode-line (current-screen) (current-head)))
+(let ((screen (current-screen)))
+  (loop for head in (screen-heads screen) do
+       (if (not (head-mode-line head))
+           (toggle-mode-line screen head))))
+
