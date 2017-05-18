@@ -36,6 +36,8 @@
 (define-key *root-map* (kbd (concatenate 'string "M-" vi-down)) "move-window down")
 (define-key *root-map* (kbd (concatenate 'string "M-" vi-right)) "move-window right")
 
+(define-key *root-map* (kbd "M-1") "only")
+
 ;; Load dev layout
 (define-key *root-map* (kbd "M-d") "restore-from-file ~/.stumpwm.d/dumps/dev.lisp")
 
