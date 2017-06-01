@@ -66,3 +66,6 @@
 ;; screenshots
 (define-key *top-map* (kbd "Print") "exec escrotum ~/my/pics/screen-%Y-%m-%d-%H:%M:%S.png")
 (define-key *top-map* (kbd "s-Print") "exec escrotum -s ~/my/pics/screen-%Y-%m-%d-%H:%M:%S.png")
+
+;; Open new emacs window
+(define-key *root-map* (kbd "M-e") "exec emacsclient -nc")
