@@ -66,7 +66,3 @@
 ;; screenshots
 (define-key *top-map* (kbd "Print") "exec escrotum ~/my/pics/screen-%Y-%m-%d-%H:%M:%S.png")
 (define-key *top-map* (kbd "s-Print") "exec escrotum -s ~/my/pics/screen-%Y-%m-%d-%H:%M:%S.png")
-
-;; change kill
-(undefine-key *root-map* (kbd "C-k"))
-(define-key *root-map* (kbd "C-x") "delete")
