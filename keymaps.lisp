@@ -39,7 +39,7 @@
 (define-key *root-map* (kbd "M-1") "only")
 
 (define-key *root-map* (kbd "s-s") "hsplit-equally")
-(define-key *root-map* (kbd "M-s-s") "vsplit-equally")
+(define-key *root-map* (kbd "M-S") "vsplit-equally")
 
 ;; Load dev layout
 (define-key *root-map* (kbd "M-d") "restore-from-file ~/.stumpwm.d/dumps/dev.lisp")
