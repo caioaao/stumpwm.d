@@ -38,7 +38,7 @@
 
 (define-key *root-map* (kbd "M-1") "only")
 
-(define-key *root-map* (kbd "s-s") "hsplit-equally")
+(define-key *root-map* (kbd "M-s") "hsplit-equally")
 (define-key *root-map* (kbd "M-S") "vsplit-equally")
 
 ;; Load dev layout
