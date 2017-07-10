@@ -25,7 +25,7 @@
 (set-prefix-key (kbd "C-q"))
 
 ;; Set focus to follow mouse
-(setf *mouse-focus-policy* :sloppy)
+(setf *mouse-focus-policy* :click)
 
 
 ;; prompt the user for an interactive command. The first arg is an
