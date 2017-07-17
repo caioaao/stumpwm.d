@@ -41,6 +41,14 @@
 (define-key *root-map* (kbd "M-s") "hsplit-equally")
 (define-key *root-map* (kbd "M-S") "vsplit-equally")
 
+(define-interactive-keymap imove-window nil
+  ((kbd vi-left) "move-window left")
+  ((kbd vi-down) "move-window down")
+  ((kbd vi-up) "move-window up")
+  ((kbd vi-right) "move-window right"))
+
+(define-key *root-map* (kbd "M-o") "imove-window")
+
 ;; Load dev layout
 (define-key *root-map* (kbd "M-d") "restore-from-file ~/.stumpwm.d/dumps/dev.lisp")
 
