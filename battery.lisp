@@ -16,7 +16,7 @@
 
 (defun read-battery-data ()
   (list (cons 'status (read-battery-file "status"))
-        (cons 'remain (parse-integer (read-battery-file "capacity")))))
+        (cons 'remain (max 0 (min (parse-integer (read-battery-file "capacity")) 100)))))
 
 (defun current-battery-data ()
   (let ((now (/ (get-internal-real-time) internal-time-units-per-second)))
