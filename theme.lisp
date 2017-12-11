@@ -44,13 +44,27 @@
       (list "^B^3 %g ^n^b %W "
             "^>"
             "^8 %M^n"
+            "^8 %b^n"
             '(:eval (formatted-datetime *date-modeline-string*))
             " "
             '(:eval (formatted-datetime *time-modeline-string*))))
 
 ;; Turn on the modeline
-(let ((screen (current-screen)))
-  (loop for head in (screen-heads screen) do
-       (if (not (head-mode-line head))
-           (toggle-mode-line screen head))))
+(defun turn-mode-line-on (head screen)
+  (if (not (head-mode-line head))
+      (toggle-mode-line screen head)))
 
+(defun turn-mode-lines-on-for-all-heads ()
+  (let ((screen (current-screen)))
+    (loop for head in (screen-heads screen) do
+         (turn-mode-line-on head screen))))
+
+(turn-mode-lines-on-for-all-heads)
+
+(defcommand refresh-mode-lines () ()
+  (progn
+    (message "Refreshing mode lines")
+    (turn-mode-lines-on-for-all-heads)))
+
+;; TODO this is currently broken
+;; (add-hook *new-head-hook* #'turn-mode-line-on)

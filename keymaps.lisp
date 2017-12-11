@@ -77,3 +77,6 @@
 
 ;; Open new emacs window
 (define-key *root-map* (kbd "M-e") "exec emacsclient -nc")
+
+;; refresh line-mode (it doesn't turn the mode-line on when a new display is added)
+(define-key *root-map* (kbd "M-r") "refresh-mode-lines")
