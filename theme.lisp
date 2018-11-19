@@ -2,7 +2,6 @@
 
 (load-module "hostname")
 (load-module "mem")
-(load-module "ttf-fonts")
 
 ;; Color caching
 
@@ -13,10 +12,6 @@
               '("#009696")))
 
 (update-color-map (current-screen))
-
-;; Font config
-(xft:cache-fonts)
-(set-font (make-instance 'xft:font :family "Anonymous Pro" :subfamily "Regular" :size 13))
 
 ;;; Window Appearance
 (setf *normal-border-width* 0
@@ -49,7 +44,6 @@
       (list "^B^3 %g ^n^b %W "
             "^>"
             "^8 %M^n"
-            "^8 %b^n"
             '(:eval (formatted-datetime *date-modeline-string*))
             " "
             '(:eval (formatted-datetime *time-modeline-string*))))
