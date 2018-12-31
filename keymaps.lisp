@@ -58,9 +58,9 @@
 ;;; Media keys
 
 ;; Volume keys
-(define-key *top-map* (kbd "XF86AudioLowerVolume") "amixer-Master-1-")
-(define-key *top-map* (kbd "XF86AudioRaiseVolume") "amixer-Master-1+")
-(define-key *top-map* (kbd "XF86AudioMute") "amixer-Master-toggle")
+(define-key *top-map* (kbd "XF86AudioLowerVolume") "exec pactl set-sink-volume 0 -3%")
+(define-key *top-map* (kbd "XF86AudioRaiseVolume") "exec pactl set-sink-volume 0 +3%")
+(define-key *top-map* (kbd "XF86AudioMute") "exec pactl set-sink-mute 0 'toggle'")
 
 ;; Spotify control
 (define-key *top-map* (kbd "XF86AudioPlay") "exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
